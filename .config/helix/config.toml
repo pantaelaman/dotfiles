@@ -1,0 +1,20 @@
+theme = "everforest_dark"
+
+[editor]
+line-number = "relative"
+cursorline = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.indent-guides]
+render = true
+character = "▏"
+
+[keys.normal]
+"^" = "goto_line_start"
+"$" = "goto_line_end"
+
+[keys.select]
+"^" = "goto_line_start"
+"$" = "goto_line_end"

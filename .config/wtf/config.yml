@@ -1,0 +1,209 @@
+wtf:
+  colors:
+    border:
+      focusable: darkslateblue
+      focused: orange
+      normal: gray
+  grid:
+    columns: [32, 32, 32, 32, 46]
+    rows: [10, 10, 10, 10, 10]
+  refreshInterval: 1
+  mods:
+    subreddit-gamedev:
+      type: subreddit
+      enabled: true
+      numberOfPosts: 8
+      position:
+        top: 2
+        left: 1
+        width: 2
+        height: 1
+      refreshInterval: 5m
+      sortOrder: top
+      subreddit: "gamedev"
+      topTimePeriod: week
+    subreddit-dnd:
+      type: subreddit
+      enabled: true
+      numberOfPosts: 8
+      position:
+        top: 3
+        left: 1
+        width: 2
+        height: 1
+      refreshInterval: 5m
+      sortOrder: top
+      subreddit: "dnd"
+      topTimePeriod: week
+    clocks:
+      colors:
+        rows:
+          even: lightblue
+          odd: white
+      enabled: true
+      locations:
+        - Detroit: "America/Detroit"
+        - Vancouver: "America/Vancouver"
+        - Chicago: "America/Chicago"
+        - Oslo: "Europe/Oslo"
+        - Norfolk: "Pacific/Norfolk"
+        - Honolulu: "Pacific/Honolulu"
+        - GMT: "Etc/GMT"
+        - UTC: "Etc/UTC"
+      position:
+        top: 4
+        left: 3
+        height: 1
+        width: 1
+      refreshInterval: 15s
+      sort: chronological
+      dateFormat: ""
+    prettyweather-dexter:
+      type: prettyweather
+      enabled: true
+      city: "dexter"
+      position:
+        top: 4
+        left: 1
+        height: 1
+        width: 1
+      refreshInterval: 5m
+      unit: m
+      view: 0
+      language: en
+    prettyweather-stratford:
+      type: prettyweather
+      enabled: true
+      city: "stratford"
+      position:
+        top: 4
+        left: 2
+        height: 1
+        width: 1
+      refreshInterval: 5m
+      unit: m
+      view: 0
+      language: en
+    # pihole:
+    #   apiUrl: http://10.0.0.120/admin/api.php
+    #   enabled: true
+    #   maxClientWidth: 20
+    #   maxDomainWidth: 20
+    #   position:
+    #     top: 2
+    #     left: 1
+    #     height: 2
+    #     width: 2
+    #   refreshInterval: 1m
+    #   showSummary: false
+    #   showTopItems: 5
+    #   showTopClients: 5
+    #   token: 0bd7882ee2f4a03b763fd00c438e242de1fb2776fc0552cca446cad8a2234878
+    digitalclock:
+      color: orange
+      enabled: true
+      font: bigfont
+      hourFormat: 24
+      position:
+        top: 3
+        left: 3
+        height: 1
+        width: 1
+      refreshInterval: 1s
+    github:
+      apiKey: "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"
+      baseURL: ""
+      customQueries:
+        othersIssues:
+          title: "Issues"
+          filter: "is:open is:issue"
+      enabled: true
+      enableStatus: true
+      position:
+        top: 0
+        left: 0
+        height: 2
+        width: 2
+      refreshInterval: 5m
+      repositories:
+        - "Dreadbot/Dreadbots2023"
+      uploadUrl: ""
+      username: "pantaelaman"
+    ipapi:
+      colors:
+        name: red
+        value: white
+      args:
+        - "ip"
+        - "isp"
+        - "as"
+        - "city"
+        - "regionName"
+        - "country"
+        - "continent"
+        - "coordinates"
+        - "organization"
+        - "timezone"
+        - "reverseDNS"
+      enabled: true
+      position:
+        top: 0
+        left: 2
+        height: 1
+        width: 2
+      refreshInterval: 180s
+    power:
+      enabled: true
+      position:
+        top: 1
+        left: 2
+        height: 1
+        width: 2
+      refreshInterval: 30s
+    resourceusage:
+      cpuCombined: false
+      enabled: true
+      position:
+        top: 2
+        left: 0
+        height: 2
+        width: 1
+      refreshInterval: 1s
+      showCPU: true
+      showMem: true
+      showSwp: true
+    todo:
+      checkedIcon: "X"
+      colors:
+        checked: gray
+        highlight:
+          fore: black
+          back: orange
+      enabled: true
+      filename: "todo.yml"
+      position:
+        top: 0
+        left: 4
+        height: 5
+        width: 1
+      refreshInterval: 1h
+    security:
+      enabled: true
+      position:
+        top: 2
+        left: 3
+        height: 1
+        width: 1
+      refreshInterval: 1h
+    uptimerobot:
+      apiKey: u2043120-094863a48c8e7586ec9afb84
+      enabled: true
+      offlineFirst: true
+      position:
+        top: 4
+        left: 0
+        height: 1
+        width: 1
+      refreshInterval: 1h
+      uptimePeriods: 7-30
+
