@@ -1,0 +1,10 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+continuation_prompt = '[∙](bright-black) '
+
+[python]
+symbol = "\ue73c "
+
+[rust]
+symbol = "\ue7a8 "
