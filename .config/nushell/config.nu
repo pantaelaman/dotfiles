@@ -651,5 +651,23 @@ let-env config = {
   ]
 }
 
+let-env PATH = ($env.PATH | split row (char esep)
+    | prepend $'($env.HOME)/.cargo/bin'
+    | prepend $'($env.HOME)/.local/bin'
+    | prepend '/usr/local/opt/llvm/bin'
+    | prepend '/usr/local/bin/sbin'
+    | prepend '/usr/sbin'
+    | prepend '/sbin'
+)
+
+let-env DOTNET_ROOT = "/usr/local/opt/dotnet/libexec"
+let-env MONO_GAC_PREFIX = "/usr/local"
+
+let-env TERM = "xterm-256color"
+let-env EDITOR = "helix"
+
+neofetch
+
+
 source ~/.cache/starship/init.nu
 source ~/.zoxide.nu

@@ -63,26 +63,9 @@ let-env NU_PLUGIN_DIRS = [
 
 # zsh ~/.zshrc
 
-let-env PATH = ($env.PATH | split row (char esep)
-    | prepend '~/.cargo/bin'
-    | prepend '~/.local/bin'
-    | prepend '/usr/local/opt/llvm/bin'
-    | prepend '/usr/local/bin/sbin'
-    | prepend '/usr/sbin'
-    | prepend '/sbin'
-)
-
-let-env DOTNET_ROOT = "/usr/local/opt/dotnet/libexec"
-let-env MONO_GAC_PREFIX = "/usr/local"
-
-let-env TERM = "xterm-256color"
-let-env EDITOR = "helix"
-
-neofetch
-
 mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+~/.cargo/bin/starship init nu | save -f ~/.cache/starship/init.nu
 
-zoxide init nushell | save -f ~/.zoxide.nu
+~/.local/bin/zoxide init nushell | save -f ~/.zoxide.nu
 
 alias hx = helix

@@ -23,10 +23,10 @@ set $mod Mod4
 
 # This is setup for qwerty
 # set $right to m if using azerty keyboard
-set $up k
-set $down j
-set $left h
-set $right l
+set $up i
+set $down e
+set $left n
+set $right o
 
 ################# Single and Dual screen
 
@@ -158,8 +158,8 @@ mode "$mode_system" {
 }
 
 # ArcoLinux Logout
-bindsym $mod+Shift+e exec --no-startup-id archlinux-logout
-bindsym $mod+X exec --no-startup-id archlinux-logout
+# bindsym Mod1+Shift+e exec --no-startup-id archlinux-logout
+# bindsym $mod+X exec --no-startup-id archlinux-logout
 
 ################# reload changed configuration     
 
@@ -227,10 +227,10 @@ for_window [urgent=latest] focus
 default_orientation horizontal
 
 # split in horizontal orientation
-bindsym $mod+" split h
+bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+% split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 # Super + F in arcolinux is execute thunar
@@ -240,7 +240,7 @@ bindsym $mod+f fullscreen toggle
 # qwerty/azerty issue for letter z
 bindsym $mod+s layout stacking
 bindsym $mod+z layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+l layout toggle split
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -413,11 +413,14 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
 ################# system applications       
 
-exec --no-startup-id xfce4-power-manager &
+# exec --no-startup-id xfce4-power-manager &
 # ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
 # IF xfsettingsd is activated you can not change themes
 # exec --no-startup-id xfsettingsd &
-exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+
+exec --no-startup-id dunst &
+bindsym $mod+Shift+F9 exec --no-startup-id dunstctl close
 
 ################# applications keyboard shortcuts  
 
@@ -426,8 +429,8 @@ exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
 # ArcoLinux Welcome App
 bindsym control+mod1+w exec --no-startup-id arcolinux-welcome-app
 
-# ArchLinux Tweak Tool
-bindsym control+mod1+e exec --no-startup-id archlinux-tweak-tool
+# ArchLiMod1+Shift+eol
+bindsym control+mod1+l exec --no-startup-id archlinux-tweak-tool
 
 # conky
 bindsym $mod+c exec --no-startup-id conky-toggle
@@ -453,8 +456,8 @@ bindsym control+mod1+m exec --no-startup-id xfce4-settings-manager
 bindsym control+mod1+c exec --no-startup-id catfish;focus
 
 # archlinux-logout
-bindsym control+mod1+k exec --no-startup-id archlinux-logout
-bindsym control+mod1+l exec --no-startup-id archlinux-logout
+bindsym $mod+Shift+l exec --no-startup-id archlinux-logout
+# bindsym control+mod1+l exec --no-startup-id archlinux-logout
 
 # rofi theme selector
 bindsym control+mod1+r exec --no-startup-id rofi-theme-selector
@@ -500,7 +503,7 @@ bindsym $mod+F4 exec --no-startup-id gimp;focus
 
 # document comparison
 bindsym $mod+F5 exec --no-startup-id meld;focus
-bindsym control+mod1+i exec --no-startup-id nitrogen;focus
+# bindsym control+mod1+i exec --no-startup-id nitrogen;focus
 
 # video player
 bindsym $mod+F6 exec --no-startup-id vlc;focus
@@ -518,7 +521,7 @@ bindsym control+mod1+b exec --no-startup-id thunar;focus
 # mail application
 bindsym $mod+F9 exec --no-startup-id evolution;focus
 # bindsym $mod+F9 exec --no-startup-id geary;focus
-# bindsym control+mod1+e exec --no-startup-id geary;focus
+# bindsym control+mod1+l exec --no-startup-id geary;focus
 
 # music
 bindsym $mod+F10 exec --no-startup-id spotify;focus
@@ -591,30 +594,30 @@ for_window [class="Alacritty"] focus
 
 # Variety keybindings mod1 = ALT
 # trash wallpaper
-bindsym mod1+t exec --no-startup-id variety -t
+# bindsym mod1+t exec --no-startup-id variety -t
 # next wallpaper
-bindsym mod1+n exec --no-startup-id variety -n
-bindsym mod1+Right exec --no-startup-id variety -n
+# bindsym mod1+n exec --no-startup-id variety -n
+# bindsym mod1+Right exec --no-startup-id variety -n
 # previous wallpaper
-bindsym mod1+p exec --no-startup-id variety -p
-bindsym mod1+Left exec --no-startup-id variety -p
+# bindsym mod1+p exec --no-startup-id variety -p
+# bindsym mod1+Left exec --no-startup-id variety -p
 # favorite wallpaper
-bindsym mod1+f exec --no-startup-id variety -f
+# bindsym mod1+f exec --no-startup-id variety -f
 # pause wallpaper
-bindsym mod1+Up exec --no-startup-id variety --pause
+# bindsym mod1+Up exec --no-startup-id variety --pause
 # resume wallpaper
-bindsym mod1+Down exec --no-startup-id variety --resume
+# bindsym mod1+Down exec --no-startup-id variety --resume
 
 ################# variety with pywal for your wallpapers/colour schemes
 
 # next wallpaper
-bindsym mod1+Shift+n exec --no-startup-id variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+# bindsym mod1+Shift+n exec --no-startup-id variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 # previous wallpaper
-bindsym mod1+Shift+p exec --no-startup-id variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+# bindsym mod1+Shift+p exec --no-startup-id variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 # trash wallpaper
-bindsym mod1+Shift+t exec --no-startup-id variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+# bindsym mod1+Shift+t exec --no-startup-id variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 # Update Wallpaper
-bindsym mod1+Shift+u exec --no-startup-id wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)
+# bindsym mod1+Shift+u exec --no-startup-id wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)
 
 ################# audio settings                   
 
@@ -633,8 +636,8 @@ bindsym XF86AudioStop exec --no-startup-id playerctl stop
 
 ################# xbacklight                       
 
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
+bindsym $mod+Shift+F8 exec --no-startup-id brightnessctl set +5% # increase screen brightness
+bindsym $mod+Shift+F7 exec --no-startup-id brightnessctl set 5%- # decrease screen brightness
 
 ################# bar toggle                       
 
@@ -721,9 +724,9 @@ mode "$mode_gaps_outer" {
 ################# picom of i3wm                  
 
 # if you want transparency on non-focused windows, ...
-exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
+# exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
 
-bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
+# bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
 ################# bar appearance                   
 
