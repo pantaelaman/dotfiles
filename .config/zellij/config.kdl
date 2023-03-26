@@ -1,0 +1,53 @@
+theme "everforest-dark"
+
+themes {
+    everforest-dark {
+        bg "#2b3339"
+        fg "#d3c6aa"
+        black "#4b565c"
+        red "#e67e80"
+        green "#a7c080"
+        yellow "#dbbc7f"
+        blue "#7fbbb3"
+        magenta "#d699b6"
+        cyan "#83c092"
+        white "#d3c6aa"
+        orange "#FF9E64"
+    }
+}
+
+keybinds {
+    normal {
+        unbind "Alt h" "Alt j" "Alt l"
+        bind "Alt n" { MoveFocus "Left"; }
+        bind "Alt o" { MoveFocus "Right"; }
+        bind "Alt e" { MoveFocus "Down"; }
+        bind "Alt i" { MoveFocus "Up"; }
+        bind "Alt k" { NewPane; }
+    }
+
+    pane {
+        unbind "h" "j" "l"
+        bind "n" { MoveFocus "Left"; }
+        bind "o" { MoveFocus "Right"; }
+        bind "e" { MoveFocus "Down"; }
+        bind "i" { MoveFocus "Up"; }
+        bind "k" { NewPane; }
+        bind "m" { TogglePaneEmbedOrFloating; }
+    }
+
+    tab {
+        unbind "h" "j" "l"
+        bind "n" { GoToNextTab; }
+        bind "o" { GoToPreviousTab; }
+        bind "k" { NewTab; }
+    }
+
+    resize {
+        unbind "h" "j" "k" "l" "H" "J" "K" "L"
+        bind "n" { Resize "Left"; }
+        bind "o" { Resize "Right"; }
+        bind "e" { Resize "Down"; }
+        bind "i" { Resize "Up"; }
+    }
+}
