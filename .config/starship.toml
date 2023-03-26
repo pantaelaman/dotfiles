@@ -8,3 +8,6 @@ symbol = "\ue73c "
 
 [rust]
 symbol = "\ue7a8 "
+
+[dart]
+symbol = "\ue798 "
