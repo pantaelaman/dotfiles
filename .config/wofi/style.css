@@ -1,0 +1,29 @@
+* {
+  font-family: SauceCodePro Nerd Font Mono, monospaced;
+  outline: none !important;
+}
+
+window {
+  background-color: #232a2e;
+  border: 2px solid #a7c080;
+}
+
+#outer-box {
+  padding: 5px;
+}
+
+#input {
+  background-color: #343f44;
+  border-radius: 0px;
+  border: none;
+  border-bottom: 2px solid #a7c080;
+  padding-bottom: 2px;
+}
+
+#entry {
+  color: #d3c6aa;
+}
+
+#entry:selected {
+  background-color: #543a48;
+}
