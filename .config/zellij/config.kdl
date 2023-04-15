@@ -23,8 +23,8 @@ keybinds {
         bind "Alt o" { MoveFocus "Right"; }
         bind "Alt e" { MoveFocus "Down"; }
         bind "Alt i" { MoveFocus "Up"; }
-        bind "Alt N" { GoToNextTab; }
-        bind "Alt O" { GoToPreviousTab; }
+        bind "Alt N" { GoToPreviousTab; }
+        bind "Alt O" { GoToNextTab; }
         bind "Alt k" { NewPane; }
         bind "Alt K" { NewTab; }
     }
