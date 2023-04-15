@@ -655,6 +655,7 @@ let-env PATH = ($env.PATH | split row (char esep)
     | prepend $'($env.HOME)/.cargo/bin'
     | prepend $'($env.HOME)/.local/bin'
     | prepend $'($env.HOME)/.ghcup/bin'
+    | prepend $'($env.HOME)/.cabal/bin'
     | prepend '/usr/local/opt/llvm/bin'
     | prepend '/usr/local/bin/sbin'
     | prepend '/usr/sbin'
