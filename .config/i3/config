@@ -658,11 +658,11 @@ bindsym $mod+y border pixel 1
 bindsym $mod+u border none
 
 # new_window pixel 1
-new_window normal
+# default_border
 # new_window none
 
 # new_float pixel 1
-new_float normal
+# new_float normal
 # new_float none
 
 ################# Popups  control                  
