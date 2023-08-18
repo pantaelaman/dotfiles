@@ -60,6 +60,7 @@
     # Set the maximum width for the progress bar
     progress_bar_max_width = 300
 
+    highlight = "#d699b6"
 
     # Show how many messages are currently hidden (because of
     # notification_limit).
@@ -87,7 +88,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 2
+    frame_width = 1
 
     # Defines color of the frame around the notification window.
     frame_color = "#a7c080"
