@@ -26,7 +26,11 @@ if status is-interactive
     bind -M visual e down-or-search
     bind -M visual i up-or-search
     bind -M visual o forward-char
-   
+
+    # abbreviations
     abbr -a hx helix
+    abbr -a e exa
+    abbr -a el exa -l
+    
     starship init fish | source
 end
