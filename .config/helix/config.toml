@@ -16,7 +16,6 @@ n = "move_char_left"
 e = "move_line_down"
 i = "move_line_up"
 o = "move_char_right"
-I = "no_op"
 O = "no_op"
 k = "insert_mode"
 K = "insert_at_line_start"
@@ -28,6 +27,10 @@ C-n = "jump_view_left"
 C-e = "jump_view_down"
 C-i = "jump_view_up"
 C-o = "jump_view_right"
+"#" = "join_selections"
+"A-#" = "join_selections_space"
+I = "keep_selections"
+A-I = "remove_selections"
 
 [keys.normal.C-w]
 j = { s = "hsplit_new", v = "vsplit_new" }
@@ -50,6 +53,14 @@ j = "goto_next_buffer"
 n = "goto_first_nonwhitespace"
 o = "goto_line_end"
 
+[keys.normal.z]
+e = "scroll_down"
+i = "scroll_up"
+E = "half_page_down"
+I = "half_page_up"
+A-e = "page_down"
+A-I = "page_up"
+
 [keys.select]
 n = "extend_char_left"
 e = "extend_line_down"
@@ -61,4 +72,7 @@ h = "open_below"
 H = "open_above"
 j = "search_next"
 J = "search_prev"
-
+G = "join_selections"
+A-G = "join_selections_space"
+I = "keep_selections"
+A-I = "remove_selections"
