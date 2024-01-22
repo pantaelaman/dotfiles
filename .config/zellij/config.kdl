@@ -19,6 +19,7 @@ themes {
 keybinds {
     normal {
         unbind "Alt h" "Alt j" "Alt l"
+        unbind "Alt Right" "Alt Left" "Alt Up" "Alt Down"
         bind "Alt n" { MoveFocus "Left"; }
         bind "Alt o" { MoveFocus "Right"; }
         bind "Alt e" { MoveFocus "Down"; }
