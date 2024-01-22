@@ -114,3 +114,11 @@
       "o" #'evil-window-right
       "k" #'evil-window-new
       "h" #'doom/window-enlargen)
+
+;; thanks to https://github.com/doomemacs/doomemacs/issues/343#issuecomment-356844346
+(sp-pair "{" nil :post-handlers '(("||\n[i]" "RET") ("| " " "))
+         :unless '(sp-point-before-word-p sp-point-before-same-p))
+(sp-pair "(" nil :post-handlers '(("||\n[i]" "RET") ("| " " "))
+         :unless '(sp-point-before-word-p sp-point-before-same-p))
+(sp-pair "[" nil :post-handlers '(("| " " "))
+         :unless '(sp-point-before-word-p sp-point-before-same-p))
