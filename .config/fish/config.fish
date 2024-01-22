@@ -14,6 +14,7 @@ set -x CPATH $DEVKITPRO/libtonc/include \
     $CPATH
 
 if status is-interactive
+    source ~/.config/fish/themes/kanagawa.fish
     # Commands to run in interactive sessions can go here
 
     set -g fish_key_bindings fish_vi_key_bindings

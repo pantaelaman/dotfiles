@@ -3,6 +3,8 @@
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
+# 
+include ~/.config/sway/themes/kanagawa.sway
 
 ### Variables
 #
@@ -259,11 +261,12 @@ bar {
     status_command i3status
 
     colors {
-        statusline #d3c6aa
-        background #2d353b
-        inactive_workspace #32323200 #32323200 #56635f
-        active_workspace #56635f #56635f #d3c6aa
-        focused_workspace #a7c080 #425047 #d3c6aa
+        statusline $oldWhite
+        background $sumiInk0
+        inactive_workspace #00000000 #00000000 $fujiGray
+        active_workspace $sumiInk3 $sumiInk2 $sumiInk4
+        focused_workspace $sumiInk4 $sumiInk3 $oldWhite
+        urgent_workspace $winterRed $winterRed $oldWhite
     }
 }
 
@@ -271,9 +274,9 @@ bar {
 # Colorisation
 # 
 
-client.unfocused #232a2e #232a2e #56635f
-client.focused_inactive #56635f #56635f #d3c6aa
-client.focused #a7c080 #425047 #d3c6aa #d699b6
+client.unfocused $sumiInk1 $sumiInk1 $fujiGray
+client.focused_inactive $sumiInk3 $sumiInk2 $sumiInk4
+client.focused $sumiInk4 $sumiInk3 $oldWhite $oniViolet
 
 # Suspend when closing computer
 bindswitch --locked --no-warn lid:on exec 'systemctl suspend'

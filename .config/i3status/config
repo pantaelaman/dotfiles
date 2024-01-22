@@ -9,8 +9,8 @@
 general {
         colors = true
         interval = 5
-        color_good = "#a7c080"
-        color_bad = "#e67e80"
+        color_good = "#98bb6c"
+        color_bad = "#e46876"
 }
 
 order += "wireless _first_"
