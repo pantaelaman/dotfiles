@@ -9,6 +9,10 @@ set PATH $HOME/.cargo/bin \
     /sbin \
     $PATH
 
+set -x CPATH $DEVKITPRO/libtonc/include \
+    $DEVKITPRO/libgba/include \
+    $CPATH
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
@@ -27,10 +31,31 @@ if status is-interactive
     bind -M visual i up-or-search
     bind -M visual o forward-char
 
+    # ls utilities
+    function ls
+        exa $argv
+    end
+    function la
+        exa -la $argv
+    end
+    function l
+        exa -l $argv
+    end
+
     # abbreviations
     abbr -a hx helix
-    abbr -a e exa
-    abbr -a el exa -l
     
     starship init fish | source
+
+    function __hoard_list
+        set hoard_command (hoard --autocomplete list 3>&1 1>&2 2>&3)
+        commandline -j $hoard_command
+    end
+
+    if ! set -q HOARD_NOBIND
+        bind -M insert \ch __hoard_list
+        bind \ch __hoard_list
+    end
+
+    neofetch
 end
