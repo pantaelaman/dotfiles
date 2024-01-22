@@ -1,0 +1,116 @@
+map global normal n h
+map global normal N H
+map global normal e j
+map global normal E J
+map global normal i k
+map global normal I K
+map global normal o l
+map global normal O L
+map global normal h o
+map global normal H O
+map global normal j n
+map global normal J N
+map global normal l e
+map global normal L E
+map global normal k i
+map global normal K I
+map global normal <a-i> <a-k>
+
+map global goto o l
+map global goto n i
+
+map global prompt <c-n> <c-h>
+map global prompt <c-e> <c-k>
+map global prompt <a-l> <a-e>
+map global prompt <a-L> <a-E>
+map global prompt <c-l> <c-e>
+
+map global view n h
+map global view e j
+map global view i k
+map global view o l
+
+colorscheme kanagawa
+set-option -add global ui_options terminal_assistant=none
+
+set-option -add global tabstop 2
+set-option -add global indentwidth 2
+
+add-highlighter global/ number-lines -relative
+
+eval %sh{kak-lsp --kakoune -s $kak_session}
+
+unmap global insert <tab>
+map global user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
+map global insert <tab> '<a-;>: try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
+map global object a '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+map global object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+map global object e '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
+map global object k '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
+map global object d '<a-semicolon>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
+map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
+
+source "%val{config}/bundle/kak-bundle/rc/kak-bundle.kak"
+bundle-noload kak-bundle https://github.com/jdugan6240/kak-bundle
+
+bundle smarttab.kak https://github.com/andreyorst/smarttab.kak
+bundle kakoune-phantom-selection https://github.com/occivink/kakoune-phantom-selection
+bundle kakoune-surround https://github.com/h-youhei/kakoune-surround
+
+map global normal f ": phantom-selection-add-selection<ret>" -docstring "add phantom"
+map global normal F ": phantom-selection-select-all; phantom-selection-clear<ret>" -docstring "enter phantoms"
+map global normal <a-f> ": phantom-selection-iterate-next<ret>" -docstring "next phantom"
+map global normal <a-F> ": phantom-selection-iterate-prev<ret>" -docstring "prev phantom"
+map global insert <a-f> "<esc>: phantom-selection-iterate-next<ret>k"
+map global insert <a-F> "<esc>: phantom-selection-iterate-prev<ret>k"
+
+declare-user-mode surround
+map global surround s ": surround<ret>" -docstring "surround"
+map global surround r ": change-surround<ret>" -docstring "replace"
+map global surround d ": delete-surround<ret>" -docstring "delete"
+map global surround t ": select-surrounding-tag<ret>" -docstring "select"
+map global normal <a-s> ": enter-user-mode surround<ret>"
+
+hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java) %{
+    lsp-enable-window
+}
+
+hook global WinSetOption .* %{expandtab}
+hook global WinSetOption filetype=(Makefile) %{
+    noexpandtab
+    set-option buffer indentwidth 0
+}
+
+hook global InsertCompletionShow .* %{
+    try %{
+        # this command temporarily removes cursors preceded by whitespace;
+        # if there are no cursors left, it raises an error, does not
+        # continue to execute the mapping commands, and the error is eaten
+        # by the `try` command so no warning appears.
+        execute-keys -draft 'h<a-K>\h<ret>'
+        map window insert <tab> <c-n>
+        map window insert <s-tab> <c-p>
+        hook -once -always window InsertCompletionHide .* %{
+            unmap window insert <tab> <c-n>
+            unmap window insert <s-tab> <c-p>
+        }
+    }
+}
+
+hook global InsertChar \n %[ try %[
+    execute-keys -draft <a-k>[})]<ret>
+    execute-keys -draft kx <a-k>[{(]\h*$<ret>
+    try %[
+        execute-keys -draft kxs^\h*<ret> <a-k>\s+<ret> yjghP
+    ]
+    execute-keys -draft O
+    execute-keys '<up>'
+]]
+
+hook global InsertChar \( %[ try %[execute-keys -draft hh<a-k>[^\\]<ret>; execute-keys )<left>] ]
+hook global InsertChar \{ %[ try %[execute-keys -draft hh<a-k>[^\\]<ret>; execute-keys }<left>] ]
+hook global InsertChar \[ %{ try %{execute-keys -draft hh<a-k>[^\\]<ret>; execute-keys ]<left>} }
+
+hook global InsertChar \) %[ try %[execute-keys -draft <a-k>[)]<ret>; execute-keys <backspace><right>] ]
+hook global InsertChar \} %[ try %[execute-keys -draft <a-k>[}]<ret>; execute-keys <backspace><right>] ]
+hook global InsertChar \] %{ try %{execute-keys -draft <a-k>[\]]<ret>; execute-keys <backspace><right>} }
