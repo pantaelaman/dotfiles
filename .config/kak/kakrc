@@ -14,7 +14,6 @@ map global normal l e
 map global normal L E
 map global normal k i
 map global normal K I
-map global normal <a-i> <a-k>
 
 map global goto o l
 map global goto n i
@@ -75,7 +74,7 @@ hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java) %{
     lsp-enable-window
 }
 
-hook global WinSetOption .* %{expandtab}
+hook global WinSetOption filetype=.* %{expandtab}
 hook global WinSetOption filetype=(Makefile) %{
     noexpandtab
     set-option buffer indentwidth 0
