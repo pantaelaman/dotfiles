@@ -1,1 +1,17 @@
 show-keyboard-layout
+indicator-caps-lock
+color=1f1f28
+text-color=1f1f28
+inside-color=1f1f28
+inside-ver-color=938aa9
+inside-clear-color=dca561
+inside-wrong-color=ff5d62
+line-color=16161d
+separator-color=16161d
+layout-bg-color=1f1f28
+layout-text-color=dcd7ba
+ring-ver-color=957fb8
+ring-wrong-color=e46876
+ring-color=76946a
+key-hl-color=98bb6c
+bs-hl-color=e46876
