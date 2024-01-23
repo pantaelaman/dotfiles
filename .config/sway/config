@@ -24,7 +24,7 @@ set $menu wofi
 
 ### Output configuration
 
-output * bg /usr/share/backgrounds/arcolinux/lush_town.png fill
+output * bg /usr/share/backgrounds/arcolinux/nordic_town.jpg fill
 
 #
 # Example configuration:
@@ -42,9 +42,9 @@ output DP-2 resolution 3840x2160 position 2256,0 scale 1.5
 #
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 'swaylock -f -c 1f1f28' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep 'swaylock -f -c 1f1f28'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -81,8 +81,7 @@ input type:touchpad {
 }
 
 input type:keyboard {
-    xkb_layout us
-    xkb_variant colemak
+    xkb_layout us(colemak),us(cmk_ed_mirror)
 }
 
 input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
@@ -247,6 +246,8 @@ bindsym $mod+F9 exec grim
 
 bindsym $mod+Shift+Semicolon exec dunstctl close
 bindsym $mod+Semicolon exec dunstctl context
+
+bindsym --release ISO_Level3_Shift exec swaymsg input type:keyboard xkb_switch_layout next
 
 #
 # Status Bar:
