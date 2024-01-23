@@ -1,10 +1,10 @@
-theme "everforest-dark"
+theme "kanagawa"
 
 themes {
     everforest-dark {
         bg "#2b3339"
         fg "#d3c6aa"
-        black "#4b565c"
+        black "#16161d"
         red "#e67e80"
         green "#a7c080"
         yellow "#dbbc7f"
@@ -14,20 +14,79 @@ themes {
         white "#d3c6aa"
         orange "#FF9E64"
     }
+    
+    kanagawa {
+        bg "#1f1f28"
+        fg "#dcd7ba"
+        black "#1f1f28"
+        red "#c34043"
+        green "#76946a"
+        yellow "#dca561"
+        blue "#7e9cd8"
+        magenta "#957fb8"
+        cyan "#6a9589"
+        white "#dcd7ba"
+        orange "#ffa066"
+    }
 }
 
 keybinds {
     normal {
-        unbind "Alt h" "Alt j" "Alt l"
+        unbind "Alt h" "Alt j" "Alt l" "Ctrl p" "Ctrl t"
         unbind "Alt Right" "Alt Left" "Alt Up" "Alt Down"
-        bind "Alt n" { MoveFocus "Left"; }
-        bind "Alt o" { MoveFocus "Right"; }
-        bind "Alt e" { MoveFocus "Down"; }
-        bind "Alt i" { MoveFocus "Up"; }
-        bind "Alt N" { GoToPreviousTab; }
-        bind "Alt O" { GoToNextTab; }
-        bind "Alt k" { NewPane; }
-        bind "Alt K" { NewTab; }
+        unbind "Alt n" "Alt o" "Alt e" "Alt i" "Alt N" "Alt O" "Alt k" "Alt K"
+//      bind "Alt n" { MoveFocus "Left"; }
+//      bind "Alt o" { MoveFocus "Right"; }
+//      bind "Alt e" { MoveFocus "Down"; }
+//      bind "Alt i" { MoveFocus "Up"; }
+//      bind "Alt N" { GoToPreviousTab; }
+//      bind "Alt O" { GoToNextTab; }
+//      bind "Alt k" { NewPane; }
+//      bind "Alt K" { NewTab; }
+        bind "Alt `" { SwitchToMode "Pane"; }
+        bind "Alt ~" { SwitchToMode "Tab"; }
+        bind "Alt ?" {
+            LaunchOrFocusPlugin "file:/home/pantaelaman/.config/zellij/plugins/zellij_forgot.wasm" {
+                "lock"                  "ctrl + g"
+                "unlock"                "ctrl + g"
+                "new pane"              "alt + ` > k"
+                "close pane"            "alt + ` > x"
+                "switch pane"           "alt + ` > neio"
+                "rename pane"           "alt + ` > c"
+                "toggle fullscreen"     "alt + ` > f"
+                "toggle floating"       "alt + ` > w"
+                "toggle embed"          "alt + ` > m"
+                "new tab"               "alt + ~ > k"
+                "close tab"             "alt + ~ > x"
+                "switch tab"            "alt + ~ > no"
+                "rename tab"            "alt + ~ > r"
+                "sync tab"              "alt + ~ > s"
+                "break pane to tab"     "alt + ~ > b"
+                "break pane left"       "alt + ~ > ["
+                "break pane right"      "alt + ~ > ]"
+                "toggle tab"            "alt + ~ > tab"
+                "increase pane size"    "ctrl + n > +"
+                "decrease pane size"    "ctrl + n > -"
+                "increase pane top"     "ctrl + n > i"
+                "increase pane right"   "ctrl + n > o"
+                "increase pane bottom"  "ctrl + n > e"
+                "increase pane left"    "ctrl + n > n"
+                "decrease pane top"     "ctrl + n > I"
+                "decrease pane right"   "ctrl + n > O"
+                "decrease pane bottom"  "ctrl + n > E"
+                "decrease pane left"    "ctrl + n > N"
+                "move pane to top"      "ctrl + h > i"
+                "move pane to right"    "ctrl + h > o"
+                "move pane to bottom"   "ctrl + h > e"
+                "move pane to left"     "ctrl + h > n"
+                "search"                "ctrl + s > s"
+                "go into edit mode"     "ctrl + s > e"
+                "detach session"        "ctrl + o > w"
+                "open session manager"  "ctrl + o > w"
+                "quit zellij"           "ctrl + q"
+                floating true
+            }
+        }
     }
 
     pane {
@@ -36,6 +95,10 @@ keybinds {
         bind "o" { MoveFocus "Right"; }
         bind "e" { MoveFocus "Down"; }
         bind "i" { MoveFocus "Up"; }
+        bind "N" { MovePane "Left"; }
+        bind "O" { MovePane "Right"; }
+        bind "E" { MovePane "Down"; }
+        bind "I" { MovePane "Up"; }
         bind "k" { NewPane; }
         bind "m" { TogglePaneEmbedOrFloating; }
     }
