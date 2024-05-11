@@ -17,6 +17,7 @@ map global normal K I
 
 map global goto o l
 map global goto n i
+map global goto i g
 
 map global prompt <c-n> <c-h>
 map global prompt <c-e> <c-k>
@@ -41,7 +42,7 @@ eval %sh{kak-lsp --kakoune -s $kak_session}
 
 unmap global insert <tab>
 map global user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
-map global insert <tab> '<a-;>: try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
+map global insert <c-n> '<a-;>: try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
 map global object a '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
 map global object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
 map global object e '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
@@ -63,6 +64,8 @@ map global normal <a-F> ": phantom-selection-iterate-prev<ret>" -docstring "prev
 map global insert <a-f> "<esc>: phantom-selection-iterate-next<ret>k"
 map global insert <a-F> "<esc>: phantom-selection-iterate-prev<ret>k"
 
+map global user y "$cat | wl-copy<ret>"
+
 declare-user-mode surround
 map global surround s ": surround<ret>" -docstring "surround"
 map global surround r ": change-surround<ret>" -docstring "replace"
@@ -70,14 +73,23 @@ map global surround d ": delete-surround<ret>" -docstring "delete"
 map global surround t ": select-surrounding-tag<ret>" -docstring "select"
 map global normal <a-s> ": enter-user-mode surround<ret>"
 
+hook global BufCreate .*\.latex %{
+    set-option buffer filetype latex
+}
+
 hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java) %{
     lsp-enable-window
 }
 
-hook global WinSetOption filetype=.* %{expandtab}
+hook global WinSetOption filetype=.* %{expandtab;set-option window indentwidth 4}
 hook global WinSetOption filetype=(Makefile) %{
     noexpandtab
     set-option buffer indentwidth 0
+}
+
+hook global WinSetOption filetype=rust %{
+    expandtab;
+    set-option window indentwidth 2;
 }
 
 hook global InsertCompletionShow .* %{

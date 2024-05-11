@@ -1,0 +1,57 @@
+snippet_support = true
+
+[language.rust]
+filetypes = ["rust"]
+roots = ["Cargo.toml"]
+command = "rust-analyzer"
+settings_section = "rust-analyzer"
+
+[language.rust.settings.rust-analyzer]
+procMacro.enable = true
+
+[language.c_cpp]
+filetypes = ["c", "cpp"]
+roots = ["compile_commands.json", ".ccls", ".git"]
+command = "ccls"
+args = ["--init={\"completion\":{\"detailedLabel\":false}}"]
+
+[language.python]
+filetypes = ["python"]
+roots = ["requirements.txt", "setup.py", ".git", ".hg"]
+command = "pylsp"
+offset_encoding = "utf-8"
+
+[language.haskell]
+filetypes = ["haskell"]
+roots = ["Setup.hs", "stack.yaml", "*.cabal"]
+command = "haskell-language-server-wrapper"
+args = ["--lsp"]
+
+[language.latex]
+filetypes = ["latex"]
+roots = ["header.tex"]
+command = "texlab"
+
+[language.html]
+filetypes = ["html"]
+roots = ["package.json"]
+command = "html-languageserver"
+args = ["--stdio"]
+
+[language.css]
+filetypes = ["css"]
+roots = ["package.json"]
+command = "css-languageserver"
+args = ["--stdio"]
+
+[language.json]
+filetypes = ["json"]
+roots = ["package.json"]
+command = "json-languageserver"
+args = ["--stdio"]
+
+[language.svelte]
+filetypes = ["svelte"]
+roots = ["package.json"]
+command = "svelteserver"
+args = ["--stdio"]
