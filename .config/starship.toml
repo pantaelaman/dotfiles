@@ -2,6 +2,7 @@
 
 add_newline = false
 continuation_prompt = '[∙](bright-black) '
+format = '$all$status$line_break$character'
 
 [python]
 symbol = "\ue73c "
@@ -11,3 +12,6 @@ symbol = "\ue7a8 "
 
 [dart]
 symbol = "\ue798 "
+
+[status]
+disabled = false
