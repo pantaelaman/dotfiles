@@ -35,6 +35,7 @@ keybinds {
         unbind "Alt h" "Alt j" "Alt l" "Ctrl p" "Ctrl t"
         unbind "Alt Right" "Alt Left" "Alt Up" "Alt Down"
         unbind "Alt n" "Alt o" "Alt e" "Alt i" "Alt N" "Alt O" "Alt k" "Alt K"
+        unbind "Ctrl n"
 //      bind "Alt n" { MoveFocus "Left"; }
 //      bind "Alt o" { MoveFocus "Right"; }
 //      bind "Alt e" { MoveFocus "Down"; }
@@ -43,10 +44,32 @@ keybinds {
 //      bind "Alt O" { GoToNextTab; }
 //      bind "Alt k" { NewPane; }
 //      bind "Alt K" { NewTab; }
-        bind "Alt `" { SwitchToMode "Pane"; }
-        bind "Alt ~" { SwitchToMode "Tab"; }
+        bind "Alt ," { FocusPreviousPane; }
+        bind "Alt ." { FocusNextPane; }
+        bind "Alt <" { GoToPreviousTab; }
+        bind "Alt >" { GoToNextTab; }
+        bind "Alt '" { NewPane; }
+        bind "Alt \"" { NewTab; }
+        bind "Alt `" { SwitchToMode "pane"; }
+        bind "Alt ~" { SwitchToMode "tab"; }
+        bind "Ctrl q" { SwitchToMode "resize"; }
+        bind "Alt -" {
+            LaunchOrFocusPlugin "file:/home/pantaelaman/.config/zellij/plugins/monocle.wasm" {
+                floating true
+            };
+            SwitchToMode "normal";
+        }
+        bind "Alt =" {
+            LaunchOrFocusPlugin "file:/home/pantaelaman/.config/zellij/plugins/monocle.wasm" {
+                in_place true
+                kiosk true
+            };
+            SwitchToMode "normal";
+        }
         bind "Alt ?" {
             LaunchOrFocusPlugin "file:/home/pantaelaman/.config/zellij/plugins/zellij_forgot.wasm" {
+                "switch pane"           "alt + ,."
+                "switch tab"            "alt + <>"
                 "lock"                  "ctrl + g"
                 "unlock"                "ctrl + g"
                 "new pane"              "alt + ` > k"
@@ -65,22 +88,23 @@ keybinds {
                 "break pane left"       "alt + ~ > ["
                 "break pane right"      "alt + ~ > ]"
                 "toggle tab"            "alt + ~ > tab"
-                "increase pane size"    "ctrl + n > +"
-                "decrease pane size"    "ctrl + n > -"
-                "increase pane top"     "ctrl + n > i"
-                "increase pane right"   "ctrl + n > o"
-                "increase pane bottom"  "ctrl + n > e"
-                "increase pane left"    "ctrl + n > n"
-                "decrease pane top"     "ctrl + n > I"
-                "decrease pane right"   "ctrl + n > O"
-                "decrease pane bottom"  "ctrl + n > E"
-                "decrease pane left"    "ctrl + n > N"
+                "increase pane size"    "ctrl + q > +"
+                "decrease pane size"    "ctrl + q > -"
+                "increase pane top"     "ctrl + q > i"
+                "increase pane right"   "ctrl + q > o"
+                "increase pane bottom"  "ctrl + q > e"
+                "increase pane left"    "ctrl + q > n"
+                "decrease pane top"     "ctrl + q > I"
+                "decrease pane right"   "ctrl + q > O"
+                "decrease pane bottom"  "ctrl + q > E"
+                "decrease pane left"    "ctrl + q > N"
                 "move pane to top"      "ctrl + h > i"
                 "move pane to right"    "ctrl + h > o"
                 "move pane to bottom"   "ctrl + h > e"
                 "move pane to left"     "ctrl + h > n"
                 "search"                "ctrl + s > s"
                 "go into edit mode"     "ctrl + s > e"
+                "go into resize mode"   "ctrl + m"
                 "detach session"        "ctrl + o > w"
                 "open session manager"  "ctrl + o > w"
                 "quit zellij"           "ctrl + q"

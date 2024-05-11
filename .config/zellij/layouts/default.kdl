@@ -1,0 +1,51 @@
+layout {
+    default_tab_template {
+        pane split_direction="horizontal" {
+            pane
+        }
+
+        pane size=1 borderless=true {
+            plugin location="file:/home/pantaelaman/.config/zellij/plugins/zjstatus.wasm" {
+                format_left  "{mode} #[fg=fg]{session} {tabs}"
+                format_right "{command_git_branch} {command_arvelie} {datetime}"
+                format_space ""
+
+                border_enabled  "false"
+                border_char     "─"
+                border_format   "#[fg=#6C7086]{char}"
+                border_position "top"
+
+                hide_frame_for_single_pane "true"
+
+                mode_normal  "#[bg=magenta,fg=#16161d] "
+                mode_pane    "#[bg=green,fg=#16161d]p"
+                mode_tab     "#[bg=blue,fg=#16161d]t"
+                mode_resize  "#[bg=yellow,fg=#16161d]r"
+                mode_move    "#[bg=orange,fg=#16161d]m"
+                mode_session "#[bg=cyan,fg=#16161d]o"
+                mode_locked  "#[bg=red,fg=#16161d]g"
+                mode_tmux    "#[bg=#ffc387,fg=#16161d] "
+
+                tab_normal   "#[fg=#6C7086] {name} "
+                tab_active   "#[fg=#9399B2,bold,italic] {name} "
+
+                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+                command_git_branch_format      "#[fg=blue] {stdout} "
+                command_git_branch_interval    "10"
+                command_git_branch_rendermode  "static"
+
+                command_arvelie_command     "arvelie"
+                command_arvelie_format      "#[fg=#6C7086] {stdout} "
+                command_arvelie_interval    "10"
+                command_arvelie_rendermode  "static"
+
+                datetime        "#[fg=#6C7086,bold] {format} "
+                datetime_format "%d %b %Y %H:%M"
+                datetime_timezone "US/Michigan"
+            }
+        }
+    }
+    
+    tab name="editor"
+    tab name="runner"
+}
