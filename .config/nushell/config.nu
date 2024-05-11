@@ -660,6 +660,7 @@ let-env PATH = ($env.PATH | split row (char esep)
     | prepend '/usr/local/bin/sbin'
     | prepend '/usr/sbin'
     | prepend '/sbin'
+    | prepend $'($env.HOME)/.emacs.d/bin'
 )
 
 let-env DOTNET_ROOT = "/usr/local/opt/dotnet/libexec"
