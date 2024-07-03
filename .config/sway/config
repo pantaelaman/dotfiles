@@ -4,7 +4,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 # 
-include ~/.config/sway/themes/kanagawa.sway
+Include ~/.config/sway/themes/kanagawa.sway
 
 ### Variables
 #
@@ -24,7 +24,7 @@ set $menu wofi
 
 ### Output configuration
 
-output * bg /usr/share/backgrounds/arcolinux/nordic_town.jpg fill
+output * bg /usr/share/backgrounds/arcolinux/senshi_bg.png fill
 
 #
 # Example configuration:
@@ -46,6 +46,9 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 1f1f28'
 for_window [class="steam_app*"] inhibit_idle focus
+for_window [title="Dolphin*"] inhibit_idle focus
+for_window [app_id="info.cemu.Cemu"] inhibit_idle focus
+for_window [class="zoom"] inhibit_idle focus
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -90,7 +93,7 @@ input type:keyboard {
 }
 
 input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
-    pointer_accel .75
+    pointer_accel .5 # .75
 }
 
 ### Key bindings
@@ -245,9 +248,16 @@ bindsym $mod+F2 exec amixer set "Master" 5%-
 bindsym $mod+F3 exec amixer set "Master" 5%+
 bindsym $mod+Shift+F2 exec amixer set "Master" 1%-
 bindsym $mod+Shift+F3 exec amixer set "Master" 1%+
+bindsym XF86AudioRaiseVolume exec amixer set "Master" 5%+
+bindsym XF86AudioLowerVolume exec amixer set "Master" 5%-
+bindsym Shift+XF86AudioRaiseVolume exec amixer set "Master" 1%+
+bindsym Shift+XF86AudioLowerVolume exec amixer set "Master" 1%-
+bindsym XF86AudioMute exec amixer set "Master" toggle
 
 bindsym $mod+Shift+F9 exec grim -g "$(slurp)"
 bindsym $mod+F9 exec grim
+bindsym $mod+Shift+Mod1+F9 exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
+bindsym $mod+Mod1+F9 exec grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')"
 
 bindsym $mod+Shift+Semicolon exec dunstctl close
 bindsym $mod+Semicolon exec dunstctl context
@@ -269,7 +279,7 @@ bar {
     colors {
         statusline $oldWhite
         background $sumiInk0
-        inactive_workspace #00000000 #00000000 $fujiGray
+        inactive_workspace #00000050 #00000050 $fujiGray
         active_workspace $sumiInk3 $sumiInk2 $sumiInk4
         focused_workspace $sumiInk4 $sumiInk3 $oldWhite
         urgent_workspace $winterRed $winterRed $oldWhite
