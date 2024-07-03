@@ -1,4 +1,0 @@
-[[language]]
-name = "java"
-indent = { tab-width = 4, unit = "    " }
-language-servers = [ "java-language-server" ]
