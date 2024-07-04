@@ -721,7 +721,8 @@
 
 (setq visible-bell t
       scroll-preserve-screen-position t
-      backup-directory-alist '(("." . "~/.emacs-saves/")))
+      backup-directory-alist '(("." . "~/.emacs-saves/"))
+      auto-save-file-name-transforms '((".*" "~/.emacs-saves/" t)))
 
 (set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height 110)
 
