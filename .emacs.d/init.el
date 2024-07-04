@@ -691,7 +691,7 @@
   "Kakoune Insert Mode"
   :lighter " insert"
   :keymap (define-keymap
-	    "<escape>" #'kak-exit-insert)
+	    "ESC" #'kak-exit-insert)
   :group 'kakoune-modes)
 
 (add-hook 'text-mode-hook 'kak-normal-mode)
@@ -716,7 +716,7 @@
 (set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height 110)
 
 ;;(global-set-key (kbd "<escape>") 'keyboard-quit)
-(keymap-global-set "M-<return>" kak-command-map)
+(keymap-global-set "M-RET" kak-command-map)
 
 ;; *** lang specific configuration ***
 ;; js
