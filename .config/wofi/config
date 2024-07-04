@@ -1,4 +1,4 @@
-mode=drun,run
+mode=drun
 insensitive=true
 stylesheet=style.css
 
