@@ -154,7 +154,8 @@
   "l" lsp-command-map
   "c" mode-specific-map
   "DEL" ctl-x-map
-  "h" help-map)
+  "h" help-map
+  "RET" #'helm-M-x)
 
 (define-globalized-minor-mode kak-pcre-mode pcre-mode
   (lambda () (pcre-mode 1)))
