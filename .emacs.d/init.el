@@ -16,23 +16,28 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
-
 (straight-use-package 'use-package)
 
 (setq straight-use-package-by-default t)
 
-(use-package doom-modeline
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
+(use-package zerodark-theme
+  :config (load-theme 'zerodark))
 
-(use-package doom-themes
-  :init (load-theme 'doom-peacock))
+(use-package doom-modeline
+  :init  (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 20)
+	   (doom-modeline-window-width-limit 80)
+	   (doom-modeline-project-detection 'auto)
+	   (doom-modeline-lsp-icon t)
+	   (doom-modeline-icon t)))
 
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1))
+
+(use-package magit)
 
 (use-package multiple-cursors
   :config (define-key mc/keymap (kbd "<return>") nil))
@@ -169,8 +174,8 @@
 
 (defun kak-exit-insert ()
   (interactive)
-  (kak-normal-mode 1)
-  (kak-insert-mode 0))
+  (kak-insert-mode 0)
+  (kak-normal-mode 1))
 
 (defun kak-next-char (&optional num)
   (interactive "p")
@@ -384,7 +389,7 @@
   (interactive)
   (kill-ring-save (point) (mark)))
 
-(defun kak-paste (&optional num)
+(defun kak-yank (&optional num)
   (interactive "p")
   (yank num))
 
@@ -612,14 +617,13 @@
     "N" #'kak-prev-char-extend
     "o" #'kak-next-char
     "O" #'kak-next-char-extend
-    "p" #'kak-paste
+    "p" #'kak-open-here
+    "M-p" #'kak-open-here-passive
     "P" 'undefined
     "q" #'kak-copy
     "Q" 'undefined
     "r" #'kak-replace
-    "R" 'undefined
-    "M-r" #'kak-open-here
-    "M-R" #'kak-open-here-passive
+    "R" #'query-replace
     "s" #'mc/mark-all-in-region-regexp
     "S" 'undefined
     "t" #'kak-till-char
@@ -634,7 +638,7 @@
     "W" #'kak-next-word-extend
     "x" #'kak-select-line
     "X" 'undefined
-    "y" #'kak-copy
+    "y" #'kak-yank
     "Y" 'undefined
     "z" 'undefined
     "Z" 'undefined
@@ -673,7 +677,8 @@
     "." 'undefined
     "<" 'undefined
     ">" 'undefined
-    "/" 'undefined
+    "/" #'isearch-forward
+    "M-/" #'isearch-backward
     "?" 'undefined
     "_" 'undefined
     "-" 'undefined
@@ -692,8 +697,12 @@
   "Kakoune Insert Mode"
   :lighter " insert"
   :keymap (define-keymap
-	    "ESC" #'kak-exit-insert)
+	    "ESC" #'kak-exit-insert
+	    "S-<return>" #'kak-exit-insert)
   :group 'kakoune-modes)
+
+(add-hook 'kak-normal-mode-hook #'(lambda () (setq global-mode-string "normal")))
+(add-hook 'kak-insert-mode-hook #'(lambda () (setq global-mode-string "insert")))
 
 (add-hook 'text-mode-hook 'kak-normal-mode)
 (add-hook 'prog-mode-hook 'kak-normal-mode)
@@ -715,6 +724,9 @@
       backup-directory-alist '(("." . "~/.emacs-saves/")))
 
 (set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height 110)
+
+(display-battery-mode 1)
+(display-time-mode 1)
 
 ;;(global-set-key (kbd "<escape>") 'keyboard-quit)
 (keymap-global-set "M-RET" kak-command-map)
