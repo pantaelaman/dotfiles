@@ -14,8 +14,8 @@ set -x CPATH $DEVKITPRO/libtonc/include \
     $DEVKITPRO/libgba/include \
     $CPATH
 
-set -x ROS_DOMAIN_ID 42
-bass source /opt/ros/iron/setup.bash
+#set -x ROS_DOMAIN_ID 42
+#bass source /opt/ros/iron/setup.bash
 
 if status is-interactive
     source ~/.config/fish/themes/kanagawa.fish
@@ -109,6 +109,10 @@ if status is-interactive
     function __hoard_list
         set hoard_command (hoard --autocomplete list 3>&1 1>&2 2>&3)
         commandline -j $hoard_command
+    end
+
+    if ! set -q DISPLAY
+       set HOARD_NOBIND t
     end
 
     if ! set -q HOARD_NOBIND
