@@ -60,7 +60,7 @@
     # Set the maximum width for the progress bar
     progress_bar_max_width = 300
 
-    highlight = "#d699b6"
+    highlight = "#a3d4d5"
 
     # Show how many messages are currently hidden (because of
     # notification_limit).
@@ -91,7 +91,7 @@
     frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#a7c080"
+    frame_color = "#957fb8"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -309,22 +309,22 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#1e2326"
-    foreground = "#d3c6aa"
+    background = "#1f1f28"
+    foreground = "#dcd7ba"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#2e383c"
-    foreground = "#d3c6aa"
+    background = "#363646"
+    foreground = "#dcd7ba"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#4c3743"
-    foreground = "#7fbbb3"
+    background = "#43242b"
+    foreground = "#a3d4d5"
     frame_color = "#dbbc7f"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to1e2326e
