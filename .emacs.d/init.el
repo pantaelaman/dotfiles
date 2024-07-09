@@ -20,8 +20,9 @@
 
 (setq straight-use-package-by-default t)
 
-(use-package zerodark-theme
-  :config (load-theme 'zerodark))
+(use-package zerodark-theme)
+;; have to do this here or else daemon mode won't work
+(load-theme 'zerodark)
 
 (use-package doom-modeline
   :init  (doom-modeline-mode 1)
@@ -49,10 +50,14 @@
 (use-package pcre2el
   :straight (pcre2el :type git :host github :repo "joddie/pcre2el"))
 
+(use-package projectile)
+
 (use-package helm
   :bind (("M-x" . helm-M-x)
 	 ("C-x C-f" . helm-find-files))
   :config (helm-mode 1))
+
+(use-package helm-projectile)
 
 (add-to-list 'load-path (expand-file-name "straight/repos/lsp-mode" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "straight/repos/lsp-mode/clients" user-emacs-directory))
@@ -64,22 +69,24 @@
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
+  :custom ((lsp-completion-enable t))
   :hook
-  ((rust-mode . lsp)
+  ((rustic-mode . lsp)
    (java-mode . lsp)
    (js-mode . lsp)
    (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
 (use-package lsp-ui :commands lsp-ui-mode
-  :config
-  (setq lsp-ui-sideline-enable t)
-  (setq lsp-ui-sideline-show-code-actions t)
-  (setq lsp-ui-sideline-update-mode "line")
-  (setq lsp-ui-sideline-delay 0))
+  :custom ((lsp-ui-sideline-enable t)
+	   (lsp-ui-sideline-show-code-actions t)
+	   (lsp-ui-sideline-update-mode "line")
+	   (lsp-ui-sideline-delay 0)))
+   
 (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 (use-package lsp-treemacs :commands lsp-treemacs-error-list)
 (use-package flycheck)
+(use-package company)
 
 (use-package which-key
   :init (which-key-mode)
@@ -156,8 +163,9 @@
   (define-keymap
     "f" #'helm-find-files
     "w" #'save-buffer)
+  "p" #'helm-projectile
   "l" lsp-command-map
-  "c" mode-specific-map
+  "s" #'helm-lsp-workspace-symbol
   "DEL" ctl-x-map
   "h" help-map
   "RET" #'helm-M-x)
@@ -701,8 +709,8 @@
 	    "S-<return>" #'kak-exit-insert)
   :group 'kakoune-modes)
 
-(add-hook 'kak-normal-mode-hook #'(lambda () (setq global-mode-string "normal")))
-(add-hook 'kak-insert-mode-hook #'(lambda () (setq global-mode-string "insert")))
+(add-hook 'kak-normal-mode-hook #'(lambda () (setq global-mode-string #'(lambda () "normal"))))
+(add-hook 'kak-insert-mode-hook #'(lambda () (setq global-mode-string #'(lambda () "normal"))))
 
 (add-hook 'text-mode-hook 'kak-normal-mode)
 (add-hook 'prog-mode-hook 'kak-normal-mode)

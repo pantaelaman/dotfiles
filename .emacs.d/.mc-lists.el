@@ -5,12 +5,14 @@
       '(
 	helm-confirm-and-exit-minibuffer
 	kak-append-end
+	kak-change
 	kak-deselect-region
 	kak-enter-insert
 	kak-exit-insert
 	kak-flip-region
 	kak-goto-buffer-end
 	kak-goto-end
+	kak-goto-end-extend
 	kak-goto-start
 	kak-kill
 	kak-next-char
@@ -27,6 +29,8 @@
 
 (setq mc/cmds-to-run-once
       '(
+	ignore-preserving-kill-region
+	lsp-ui-doc--handle-mouse-movement
 	mc/mark-next-lines
 	undefined
 	))
