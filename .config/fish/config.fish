@@ -120,5 +120,5 @@ if status is-interactive
         bind \ch __hoard_list
     end
 
-    neofetch
+    fastfetch
 end
