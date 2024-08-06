@@ -16,6 +16,7 @@
 	kak-goto-start
 	kak-kill
 	kak-next-char
+	kak-next-char-extend
 	kak-next-line
 	kak-next-word
 	kak-prev-char
