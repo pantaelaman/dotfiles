@@ -60,6 +60,14 @@ for_window [class="Emacs"] fullscreen enable
 
 exec dunst
 
+### fcitx
+
+exec --no-startup-id fcitx5 -d
+
+#exec /usr/lib/ibus/ibus-ui-gtk3 --enable-wayland-im --exec-daemon --daemon-args "--xim --panel disable"
+#exec ibus start &
+exec scim -d
+
 ### uudev
 
 exec systemctl --user restart uudev
@@ -82,7 +90,7 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Read `man 5 sway-input` for more information about this section.
 
 input type:touchpad {
-    dwt enabled
+    dwt disabled
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
