@@ -51,6 +51,8 @@ for_window [app_id="info.cemu.Cemu"] inhibit_idle focus
 for_window [class="zoom"] inhibit_idle focus
 
 for_window [class="Emacs"] fullscreen enable
+for_window [class="Godot"] floating enable
+for_window [class="Godot" title="^Godot$"] floating disable
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
