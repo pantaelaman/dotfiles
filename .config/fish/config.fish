@@ -62,6 +62,9 @@ if status is-interactive
     function sl
         /usr/sbin/sl -ac2 | lolcat -F 0.001
     end
+    function man
+        batman $argv
+    end
 
     function _navi_smart_replace
         set -l current_process (commandline -p | string trim)
