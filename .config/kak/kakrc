@@ -30,6 +30,9 @@ map global view e j
 map global view i k
 map global view o l
 
+map global insert <a-ret> <esc>
+map global insert <s-ret> <esc>
+
 colorscheme kanagawa
 set-option -add global ui_options terminal_assistant=none
 
@@ -81,7 +84,7 @@ hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java) %{
     lsp-enable-window
 }
 
-hook global WinSetOption filetype=.* %{expandtab;set-option window indentwidth 4}
+hook global WinSetOption filetype=.* %{expandtab;set-option buffer indentwidth 2}
 hook global WinSetOption filetype=(Makefile) %{
     noexpandtab
     set-option buffer indentwidth 0
