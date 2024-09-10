@@ -7,6 +7,7 @@ set PATH $HOME/.cargo/bin \
     /usr/local/opt/llvm/bin \
     /usr/local/bin/sbin \
     /usr/sbin \
+    /usr/lib/rustup/bin \
     /sbin \
     $PATH
 
@@ -106,6 +107,7 @@ if status is-interactive
     abbr -a kaks kak -d -s \$ZELLIJ_SESSION_NAME \&
     abbr -a kak kak -c \$ZELLIJ_SESSION_NAME
     abbr -a kakn kak
+    abbr -a blt bluetoothctl
     
     starship init fish | source
 
