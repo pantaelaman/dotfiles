@@ -35,7 +35,7 @@ keybinds {
         unbind "Alt h" "Alt j" "Alt l" "Ctrl p" "Ctrl t"
         unbind "Alt Right" "Alt Left" "Alt Up" "Alt Down"
         unbind "Alt n" "Alt o" "Alt e" "Alt i" "Alt N" "Alt O" "Alt k" "Alt K"
-        unbind "Ctrl n"
+        unbind "Ctrl n" "Ctrl h"
 //      bind "Alt n" { MoveFocus "Left"; }
 //      bind "Alt o" { MoveFocus "Right"; }
 //      bind "Alt e" { MoveFocus "Down"; }
