@@ -8,6 +8,8 @@ map global normal o l
 map global normal O L
 map global normal h o
 map global normal H O
+map global normal <a-h> <a-o>
+map global normal <a-H> <a-O>
 map global normal j n
 map global normal J N
 map global normal l e
@@ -85,14 +87,18 @@ hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java) %{
 }
 
 hook global WinSetOption filetype=.* %{expandtab;set-option buffer indentwidth 2}
-hook global WinSetOption filetype=(Makefile) %{
+hook global WinSetOption filetype=(Makefile|asm) %{
     noexpandtab
     set-option buffer indentwidth 0
 }
 
 hook global WinSetOption filetype=rust %{
     expandtab;
-    set-option window indentwidth 2;
+    hook window BufWritePre .* lsp-formatting-sync
+    hook window -group rust-inlay-hints BufWritePost .* rust-analyzer-inlay-hints
+    hook -once -always window WinSetOption filetype=.* %{
+      remove-hooks window rust-inlay-hints
+    }
 }
 
 hook global InsertCompletionShow .* %{
