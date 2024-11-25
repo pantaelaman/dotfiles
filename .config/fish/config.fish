@@ -95,6 +95,15 @@ if status is-interactive
         echo kill | kak -p $ZELLIJ_SESSION_NAME
     end
 
+    function zj
+        set -f dir (basename (pwd))
+        if zellij list-sessions | grep $dir
+            zellij attach $dir
+        else
+            zellij -s $dir
+        end
+    end
+
     if test $fish_key_bindings = fish_default_key_bindings
         bind \cg _navi_smart_replace
     else
