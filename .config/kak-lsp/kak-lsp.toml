@@ -1,5 +1,10 @@
 snippet_support = true
 
+[language.glsl]
+filetypes = ["glsl"]
+roots = ["*.glsl"]
+command = "glsl_analyzer"
+
 [language.rust]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]

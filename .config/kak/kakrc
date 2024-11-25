@@ -82,7 +82,11 @@ hook global BufCreate .*\.latex %{
     set-option buffer filetype latex
 }
 
-hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java) %{
+hook global BufCreate .*\.(vert|frag) %{
+    set-option buffer filetype glsl
+}
+
+hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java|glsl) %{
     lsp-enable-window
 }
 
@@ -99,6 +103,10 @@ hook global WinSetOption filetype=rust %{
     hook -once -always window WinSetOption filetype=.* %{
       remove-hooks window rust-inlay-hints
     }
+}
+
+hook global WinSetOption filetype=markdown %{
+  add-highlighter buffer wrap
 }
 
 hook global InsertCompletionShow .* %{
