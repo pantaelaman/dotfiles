@@ -17,9 +17,11 @@ map global normal L E
 map global normal k i
 map global normal K I
 
-map global goto o l
-map global goto n i
-map global goto i g
+map global goto o l -docstring 'line end'
+map global goto n i -docstring 'line start'
+map global goto i g -docstring 'buffer top'
+unmap global goto l
+unmap global goto g
 
 map global prompt <c-n> <c-h>
 map global prompt <c-e> <c-k>
@@ -27,10 +29,14 @@ map global prompt <a-l> <a-e>
 map global prompt <a-L> <a-E>
 map global prompt <c-l> <c-e>
 
-map global view n h
-map global view e j
-map global view i k
-map global view o l
+map global view n h -docstring 'scroll left'
+map global view e j -docstring 'scroll down'
+map global view i k -docstring 'scroll up'
+map global view o l -docstring 'scroll right'
+unmap global view h
+unmap global view j
+unmap global view k
+unmap global view l
 
 map global insert <a-ret> <esc>
 map global insert <s-ret> <esc>
@@ -78,17 +84,11 @@ map global surround d ": delete-surround<ret>" -docstring "delete"
 map global surround t ": select-surrounding-tag<ret>" -docstring "select"
 map global normal <a-s> ": enter-user-mode surround<ret>"
 
-hook global BufCreate .*\.latex %{
-    set-option buffer filetype latex
-}
+hook global BufCreate .*\.latex %{set-option buffer filetype latex}
+hook global BufCreate .*\.(vert|frag) %{set-option buffer filetype glsl}
+hook global BufCreate .*\.md %{set-option buffer filetype markdown}
 
-hook global BufCreate .*\.(vert|frag) %{
-    set-option buffer filetype glsl
-}
-
-hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java|glsl) %{
-    lsp-enable-window
-}
+hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java|glsl) %{lsp-enable-window}
 
 hook global WinSetOption filetype=.* %{expandtab;set-option buffer indentwidth 2}
 hook global WinSetOption filetype=(Makefile|asm) %{
@@ -115,7 +115,7 @@ hook global InsertCompletionShow .* %{
         # if there are no cursors left, it raises an error, does not
         # continue to execute the mapping commands, and the error is eaten
         # by the `try` command so no warning appears.
-        execute-keys -draft 'h<a-K>\h<ret>'
+        execute-keys -draft 'h<a-K>\h|\n<ret>'
         map window insert <tab> <c-n>
         map window insert <s-tab> <c-p>
         hook -once -always window InsertCompletionHide .* %{
