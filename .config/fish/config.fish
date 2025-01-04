@@ -117,6 +117,8 @@ if status is-interactive
     abbr -a kak kak -c \$ZELLIJ_SESSION_NAME
     abbr -a kakn kak
     abbr -a blt bluetoothctl
+    abbr -a bltc bluetoothctl connect
+    abbr -a bltd bluetoothctl disconnect
     
     starship init fish | source
 
