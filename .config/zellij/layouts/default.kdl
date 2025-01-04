@@ -1,15 +1,14 @@
 layout {
     default_tab_template {
-        pane split_direction="horizontal"
+        pane split_direction="horizontal" borderless=false
         statusbar size=1
     }
 
     pane_template name="statusbar" {
         borderless true
         plugin location="file:/home/pantaelaman/.config/zellij/plugins/zjstatus.wasm" {
-
             format_left  "{mode} #[fg=fg]{session} {tabs}"
-            format_right "{command_git_branch} {command_arvelie} {command_kaks} {datetime}"
+            format_right "{command_git_branch} {command_kaks} {datetime}"
             format_space ""
 
             border_enabled  "false"
@@ -17,7 +16,7 @@ layout {
             border_format   "#[fg=#6C7086]{char}"
             border_position "top"
 
-            hide_frame_except_for_fullscreen "true"
+            hide_frame_for_single_pane "true"
 
             mode_normal  "#[bg=magenta,fg=#16161d] "
             mode_pane    "#[bg=green,fg=#16161d]p"
@@ -35,11 +34,6 @@ layout {
             command_git_branch_format      "#[fg=blue] {stdout} "
             command_git_branch_interval    "10"
             command_git_branch_rendermode  "static"
-
-            command_arvelie_command     "arvelie"
-            command_arvelie_format      "#[fg=#6C7086] {stdout} "
-            command_arvelie_interval    "10"
-            command_arvelie_rendermode  "static"
 
             command_kaks_command "bash -c \"kak -d -s $ZELLIJ_SESSION_NAME\""
             command_kaks_format  ""
