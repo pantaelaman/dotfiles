@@ -24,7 +24,7 @@ set $menu wofi
 
 ### Output configuration
 
-output * bg /usr/share/backgrounds/pantaelaman/otgw.jpg fill
+output * bg /usr/share/backgrounds/pantaelaman/ffxiv_heroes_darkness.jpeg fill
 
 #
 # Example configuration:
@@ -110,7 +110,7 @@ input type:keyboard {
 }
 
 input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
-    pointer_accel .5 # .75
+    pointer_accel .6 # .75
 }
 
 ### Key bindings
