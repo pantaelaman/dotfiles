@@ -5,6 +5,11 @@ filetypes = ["glsl"]
 roots = ["*.glsl"]
 command = "glsl_analyzer"
 
+[language.wgsl]
+filetypes = ["wgsl"]
+roots = ["*.wgsl"]
+command = "wgsl_analyzer"
+
 [language.rust]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]

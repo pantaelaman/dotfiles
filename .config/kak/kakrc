@@ -86,9 +86,10 @@ map global normal <a-s> ": enter-user-mode surround<ret>"
 
 hook global BufCreate .*\.latex %{set-option buffer filetype latex}
 hook global BufCreate .*\.(vert|frag) %{set-option buffer filetype glsl}
+hook global BufCreate .*\.wgsl %{set-option buffer filetype wgsl}
 hook global BufCreate .*\.md %{set-option buffer filetype markdown}
 
-hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java|glsl) %{lsp-enable-window}
+hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java|glsl|wgsl) %{lsp-enable-window}
 
 hook global WinSetOption filetype=.* %{expandtab;set-option buffer indentwidth 2}
 hook global WinSetOption filetype=(Makefile|asm) %{
