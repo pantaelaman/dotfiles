@@ -24,7 +24,8 @@ set $menu wofi
 
 ### Output configuration
 
-output * bg /usr/share/backgrounds/pantaelaman/ffxiv_heroes_darkness.jpeg fill
+output * bg /usr/share/backgrounds/pantaelaman/beastars.jpg fill
+output eDP-1 bg /usr/share/backgrounds/pantaelaman/beastars-eDP-1.jpg fill
 
 #
 # Example configuration:
@@ -260,16 +261,16 @@ bindsym $mod+F1 exec firefox
 bindsym $mod+Shift+F8 exec brightnessctl set +5%
 bindsym $mod+Shift+F7 exec brightnessctl set 5%-
 
-bindsym $mod+Shift+F1 exec amixer set "Master" toggle
-bindsym $mod+F2 exec pulseaudio-ctl down
-bindsym $mod+F3 exec pulseaudio-ctl up
-bindsym $mod+Shift+F2 exec pulseaudio-ctl down 1
-bindsym $mod+Shift+F3 exec pulseaudio-ctl up 1
-bindsym XF86AudioRaiseVolume exec pulseaudio-ctl down
-bindsym XF86AudioLowerVolume exec pulseaudio-ctl up
-bindsym Shift+XF86AudioRaiseVolume exec pulseaudio-ctl down 1
-bindsym Shift+XF86AudioLowerVolume exec pulseaudio-ctl up 1
-bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym $mod+Shift+F1 exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym $mod+F2 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ .05-
+bindsym $mod+F3 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ .05+
+bindsym $mod+Shift+F2 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ .01-
+bindsym $mod+Shift+F3 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ .01+
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ .05-
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ .05+
+bindsym Shift+XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ .01-
+bindsym Shift+XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ .01+
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
 bindsym $mod+Shift+F9 exec grim -g "$(slurp)"
 bindsym $mod+F9 exec grim
