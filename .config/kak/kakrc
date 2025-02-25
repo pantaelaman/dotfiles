@@ -88,6 +88,7 @@ hook global BufCreate .*\.latex %{set-option buffer filetype latex}
 hook global BufCreate .*\.(vert|frag) %{set-option buffer filetype glsl}
 hook global BufCreate .*\.wgsl %{set-option buffer filetype wgsl}
 hook global BufCreate .*\.md %{set-option buffer filetype markdown}
+hook global BufCreate .*\.e %{set-option buffer filetype ase100}
 
 hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java|glsl|wgsl) %{lsp-enable-window}
 
@@ -107,7 +108,43 @@ hook global WinSetOption filetype=rust %{
 }
 
 hook global WinSetOption filetype=markdown %{
-  add-highlighter buffer wrap
+  add-highlighter window wrap
+
+  hook -once -always window WinSetOption filetype=.* %{
+    remove-highlighter window wrap
+  }
+}
+
+provide-module ase100syntax %&
+  add-highlighter shared/ase100 regions
+  add-highlighter shared/ase100/ region "//" '\n' fill comment
+  add-highlighter shared/ase100/string region '"' '"' group
+  add-highlighter shared/ase100/string/ fill string
+  add-highlighter shared/ase100/string/ \
+    regex (\\[\\abefhnrtv\n])|(\\.) 1:keyword 2:Error
+  add-highlighter shared/ase100/char region "'" "'" group
+  add-highlighter shared/ase100/char/ fill string
+  add-highlighter shared/ase100/other default-region group
+  add-highlighter shared/ase100/other/ \
+    regex ^\w[\w_\d]* 0:function
+  add-highlighter shared/ase100/other/ \
+    regex \W\K-?[0-9]+ 0:value
+  add-highlighter shared/ase100/other/ \
+    regex 0x[1-9a-f][0-9a-f]* 0:value
+  add-highlighter shared/ase100/other/ \
+    regex \b(halt|add|sub|mult|div|cp|cpdata|and|or|not|sl|sr|cpfa|cpta|be|bne|blt|call|ret)\b 0:keyword
+  add-highlighter shared/ase100/other/ \
+    regex (\x23\w+)[^\n]* 1:meta
+&
+
+hook global WinSetOption filetype=ase100 %{
+  require-module ase100syntax
+
+  add-highlighter window/ase100 ref ase100
+
+  hook -once -always window WinSetOption filetype=.* %{
+    remove-highlighter window ase100
+  }
 }
 
 hook global InsertCompletionShow .* %{
