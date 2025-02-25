@@ -35,7 +35,7 @@ output eDP-1 bg /usr/share/backgrounds/pantaelaman/beastars-eDP-1.jpg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 output eDP-1 resolution 2256x1504 position 0,0 scale 1.5
-output DP-1 resolution 3840x2160 position 2256,0 scale 1.5
+output DP-1 resolution 3840x2160 position 1504,0 scale 1.5
 
 # For lowering resolution on-demand
 bindsym $mod+Mod1+Prior output DP-1 resolution 3840x2160
@@ -113,6 +113,11 @@ input type:keyboard {
 input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
     pointer_accel .6 # .75
 }
+
+# input type:pointer {
+#     accel_profile "flat"
+#     pointer_accel 1.0
+# }
 
 ### Key bindings
 #
