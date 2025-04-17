@@ -1,5 +1,8 @@
 [font]
 normal={family="SauceCodePro Nerd Font Mono", style="Regular"}
 
+[cursor.style]
+shape = "Block"
+
 [window]
 opacity=0.85
