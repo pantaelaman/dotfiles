@@ -24,8 +24,8 @@ set $menu wofi
 
 ### Output configuration
 
-output * bg /usr/share/backgrounds/pantaelaman/beastars.jpg fill
-output eDP-1 bg /usr/share/backgrounds/pantaelaman/beastars-eDP-1.jpg fill
+output * bg /usr/share/backgrounds/pantaelaman/groupphoto.png fill
+output eDP-1 bg /usr/share/backgrounds/pantaelaman/groupphoto.png fill
 
 #
 # Example configuration:
@@ -114,10 +114,10 @@ input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
     pointer_accel .6 # .75
 }
 
-# input type:pointer {
-#     accel_profile "flat"
-#     pointer_accel 1.0
-# }
+input type:pointer {
+    accel_profile "flat"
+    pointer_accel 1.0
+}
 
 ### Key bindings
 #
@@ -302,7 +302,7 @@ bar {
     colors {
         statusline $oldWhite
         background $sumiInk0
-        inactive_workspace #00000050 #00000050 $fujiGray
+        inactive_workspace $sumiInk1 $sumiInk0 $fujiGray
         active_workspace $sumiInk3 $sumiInk2 $sumiInk4
         focused_workspace $sumiInk4 $sumiInk3 $oldWhite
         urgent_workspace $winterRed $winterRed $oldWhite
