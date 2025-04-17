@@ -46,12 +46,12 @@ keybinds {
 //      bind "Alt K" { NewTab; }
         bind "Alt ," { FocusPreviousPane; }
         bind "Alt ." { FocusNextPane; }
-        bind "Alt Shift ," { GoToPreviousTab; }
-        bind "Alt Shift ." { GoToNextTab; }
+        bind "Alt <" { GoToPreviousTab; }
+        bind "Alt >" { GoToNextTab; }
         bind "Alt '" { NewPane; }
         bind "Alt \"" { NewTab; }
         bind "Alt `" { SwitchToMode "pane"; }
-        bind "Alt Shift `" { SwitchToMode "tab"; }
+        bind "Alt ~" { SwitchToMode "tab"; }
         bind "Ctrl q" { SwitchToMode "resize"; }
         bind "Alt -" {
             LaunchOrFocusPlugin "file:/home/pantaelaman/.config/zellij/plugins/monocle.wasm" {
@@ -142,3 +142,5 @@ keybinds {
         bind "i" { Resize "Up"; }
     }
 }
+
+support_kitty_keyboard_protocol false
