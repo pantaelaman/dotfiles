@@ -23,6 +23,8 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 
     set -g fish_key_bindings fish_vi_key_bindings
+    set -g fish_cursor_default underscore
+    set -g fish_cursor_insert block
     # normal
     bind n backward-char
     bind e down-or-search
@@ -31,6 +33,7 @@ if status is-interactive
     bind -m insert k repaint-mode
     bind h insert-line-under
     bind H insert-line-over
+    bind -M insert -m default alt-enter repaint-mode
     # visual
     bind -M visual n backward-char
     bind -M visual e down-or-search
