@@ -35,3 +35,14 @@ set $waveRed #E46876
 set $peachRed #FF5D62
 set $surimiOrange #FFA066
 set $katanaGray #717C7C
+
+set $bgunfoc $sumiInk1
+set $bdunfoc $sumiInk1
+set $txtunfoc $fujiGray
+set $bgfocin $sumiInk3
+set $bdfocin $sumiInk3
+set $txtfocin $sumiInk4
+set $bgfoc $sumiInk4
+set $bdfoc $sumiInk3
+set $txtfoc $oldWhite
+set $indfoc $oniViolet

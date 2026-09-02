@@ -25,5 +25,16 @@
     "poweradapter",
     "break",
     "colors"
-  ]
+  ],
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/archlogo_stripes",
+    "color": {
+      "1": "#078d70",
+      "2": "#98e8c1",
+      "3": "#ffffff",
+      "4": "#7bade2",
+      "5": "#3d1a78"
+    }
+  }
 }

@@ -10,6 +10,12 @@ filetypes = ["wgsl"]
 roots = ["*.wgsl"]
 command = "wgsl_analyzer"
 
+[language.gleam]
+filetypes = ["gleam"]
+roots = ["gleam.toml"]
+command = "gleam"
+args = ["lsp"]
+
 [language.rust]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
@@ -17,6 +23,7 @@ command = "rust-analyzer"
 settings_section = "rust-analyzer"
 
 [language.rust.settings.rust-analyzer]
+cargo.extraArgs = ["-Zjson-target-spec"]
 procMacro.enable = true
 
 [language.c_cpp]

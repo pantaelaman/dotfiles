@@ -90,7 +90,7 @@ hook global BufCreate .*\.wgsl %{set-option buffer filetype wgsl}
 hook global BufCreate .*\.md %{set-option buffer filetype markdown}
 hook global BufCreate .*\.e %{set-option buffer filetype ase100}
 
-hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java|glsl|wgsl) %{lsp-enable-window}
+hook global WinSetOption filetype=(rust|c|cpp|haskell|python|java|glsl|wgsl|gleam) %{lsp-enable-window}
 
 hook global WinSetOption filetype=.* %{expandtab;set-option buffer indentwidth 2}
 hook global WinSetOption filetype=(Makefile|asm) %{
@@ -100,7 +100,7 @@ hook global WinSetOption filetype=(Makefile|asm) %{
 
 hook global WinSetOption filetype=rust %{
     expandtab;
-    hook window BufWritePre .* lsp-formatting-sync
+    # hook window BufWritePre .* lsp-formatting-sync
     hook window -group rust-inlay-hints BufWritePost .* rust-analyzer-inlay-hints
     hook -once -always window WinSetOption filetype=.* %{
       remove-hooks window rust-inlay-hints

@@ -4,7 +4,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 # 
-include ~/.config/sway/themes/kanagawa.sway
+#include ~/.config/sway/themes/kanagawa.sway
+include ~/.config/sway/themes/duskfox.sway
 
 ### Variables
 #
@@ -24,8 +25,26 @@ set $menu wofi
 
 ### Output configuration
 
-output * bg /usr/share/backgrounds/pantaelaman/groupphoto.png fill
-output eDP-1 bg /usr/share/backgrounds/pantaelaman/groupphoto.png fill
+output * bg /usr/share/backgrounds/pantaelaman/rune_roof.png fill
+output eDP-1 bg /usr/share/backgrounds/pantaelaman/rune_roof.png fill
+
+# ==== SWAYFX SPECIFIC CONFIG ====
+
+blur enable
+blur_xray disable
+blur_passes 1
+
+corner_radius 5
+
+shadows disable
+# shadow_blur_radius 10
+# shadow_offset 2 2
+
+default_dim_inactive 0.2
+
+# ================================
+
+gaps inner 3
 
 #
 # Example configuration:
@@ -34,12 +53,21 @@ output eDP-1 bg /usr/share/backgrounds/pantaelaman/groupphoto.png fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
+#output eDP-1 resolution 2256x1504 position 2560,0 scale 1.5
+#output DP-1 resolution 3840x2160 position 4064,0 scale 1.5
+#output DP-4 resolution 3840x2160 position 0,0 scale 1.5
 output eDP-1 resolution 2256x1504 position 0,0 scale 1.5
 output DP-1 resolution 3840x2160 position 1504,0 scale 1.5
+output DP-2 resolution 2560x1440 position 1504,0 scale 1.25
+#output DP-4 resolution 3840x2160 position 1504,0 scale 1.5
+output DP-5 resolution 2560x1440 position 1504,0 scale 1.0
 
 # For lowering resolution on-demand
 bindsym $mod+Mod1+Prior output DP-1 resolution 3840x2160
 bindsym $mod+Mod1+Next output DP-1 resolution 1920x1080
+
+# For gesture-based launching
+bindsym $mod+grave exec hexecute
 
 ### Idle configuration
 #
@@ -50,15 +78,18 @@ exec swayidle -w \
          timeout 300 'swaylock -f -c 1f1f28' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 1f1f28'
-for_window [class="steam_app*"] inhibit_idle focus
-for_window [title="Dolphin*"] inhibit_idle focus
-for_window [app_id="info.cemu.Cemu"] inhibit_idle focus
+for_window [class="steam_app.*"] inhibit_idle focus
+for_window [title="Dolphin.*"] inhibit_idle focus
+for_window [app_id="info\.cemu\.Cemu"] inhibit_idle focus
 for_window [app_id="yad"] floating enable
 for_window [class="zoom"] inhibit_idle focus
+for_window [title="CliffCrown"] fullscreen enable
+for_window [class="steam_app_1229490"] input "5426:92:Razer_Razer_DeathAdder_Elite" map_to_output "DP-1"
 
 for_window [class="Emacs"] fullscreen enable
 for_window [class="Godot"] floating enable
 for_window [class="Godot" title="^Godot$"] floating disable
+for_window [class="Qsynth"] floating enable
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -76,12 +107,15 @@ exec --no-startup-id fcitx5 -d
 #exec ibus start &
 exec scim -d
 
+
 ### uudev
 
 exec systemctl --user restart uudev
 
 ### polkit authorisation
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+exec systemctl restart --user opentabletdriver
 
 ### Input configuration
 #
@@ -107,16 +141,21 @@ input type:touchpad {
 
 input type:keyboard {
     xkb_layout us(colemak)+compose(ralt)
-    # xkb_layout us
+    #xkb_layout us
 }
 
 input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
     pointer_accel .6 # .75
 }
 
-input type:pointer {
+input "1118:83:Microsoft_Microsoft_3-Button_Mouse_with_IntelliEye(TM)" {
     accel_profile "flat"
     pointer_accel 1.0
+}
+
+input type:pointer {
+    accel_profile "flat"
+    pointer_accel 0.8
 }
 
 ### Key bindings
@@ -171,17 +210,42 @@ input type:pointer {
 #
 # Workspaces:
 #
+
+set $map-to-active swaymsg input type:tablet_tool map_to_output `swaymsg -t get_outputs | jq -r '.[] | select(.focused == true) | .name'`
+
+exec $map-to-active
+
+set $ws1 number 1
+set $ws2 number 2
+set $ws3 number 3
+set $ws4 number 4
+set $ws5 number 5
+set $ws6 number 6
+set $ws7 number 7
+set $ws8 number 8
+set $ws9 number 9
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
     # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
+#    bindsym $mod+1 workspace number 1
+#    bindsym $mod+2 workspace number 2
+#    bindsym $mod+3 workspace number 3
+#    bindsym $mod+4 workspace number 4
+#    bindsym $mod+5 workspace number 5
+#    bindsym $mod+6 workspace number 6
+#    bindsym $mod+7 workspace number 7
+#    bindsym $mod+8 workspace number 8
+#    bindsym $mod+9 workspace number 9
+#    bindsym $mod+0 workspace number 10
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -261,7 +325,7 @@ bindsym $mod+r mode "resize"
 # Extra Bindings
 #
 
-bindsym $mod+F1 exec firefox
+bindsym $mod+F1 exec floorp
 
 bindsym $mod+Shift+F8 exec brightnessctl set +5%
 bindsym $mod+Shift+F7 exec brightnessctl set 5%-
@@ -291,31 +355,39 @@ bindsym --release ISO_Level3_Shift exec swaymsg input type:keyboard xkb_switch_l
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+
 bar {
-    position bottom
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-    status_command i3status
-
-    colors {
-        statusline $oldWhite
-        background $sumiInk0
-        inactive_workspace $sumiInk1 $sumiInk0 $fujiGray
-        active_workspace $sumiInk3 $sumiInk2 $sumiInk4
-        focused_workspace $sumiInk4 $sumiInk3 $oldWhite
-        urgent_workspace $winterRed $winterRed $oldWhite
-    }
+  swaybar_command waybar
 }
+
+# bar {
+#     position bottom
+# 
+#    # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+#     status_command i3status
+# 
+#    colors {
+#         statusline $oldWhite
+#         background $sumiInk0
+#         inactive_workspace $sumiInk1 $sumiInk0 $fujiGray
+#         active_workspace $sumiInk3 $sumiInk2 $sumiInk4
+#         focused_workspace $sumiInk4 $sumiInk3 $oldWhite
+#         urgent_workspace $winterRed $winterRed $oldWhite
+#     }
+# }
 
 # 
 # Colorisation
 # 
 
-client.unfocused $sumiInk1 $sumiInk1 $fujiGray
-client.focused_inactive $sumiInk3 $sumiInk2 $sumiInk4
-client.focused $sumiInk4 $sumiInk3 $oldWhite $oniViolet
+#client.unfocused $sumiInk1 $sumiInk1 $fujiGray
+client.unfocused $bgunfoc $bdunfoc $txtunfoc
+#client.focused_inactive $sumiInk3 $sumiInk2 $sumiInk4
+client.focused_inactive $bgfocin $bdfocin $txtfocin
+#client.focused $sumiInk4 $sumiInk3 $oldWhite $oniViolet
+client.focused $bgfoc $bdfoc $txtfoc $indfoc
 
 # Suspend when closing computer
 bindswitch --locked --no-warn lid:on exec 'systemctl suspend'
